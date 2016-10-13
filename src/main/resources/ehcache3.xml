@@ -1,0 +1,39 @@
+<config xmlns='http://www.ehcache.org/v3'
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:jsr107="http://www.ehcache.org/v3/jsr107"
+		xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd
+							http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.0.xsd">
+	
+	<!-- you can have jsr107 caches be extended (ehcache functionality not avilble in jsr107) 
+		w/ ehcache(es) -->
+<!-- 	<service> -->
+<!-- 		<jsr107:defaults default-template="default-template" /> -->
+<!-- 	</service> -->
+			
+	<cache alias="product-cache" uses-template="default-template">
+	<!-- adding back to see if can get rid of class cast exception: SimpleKey to Long -->
+	<!-- below, IllegalArgumentException: Cache [product-cache] specifies key/value types. Use getCache(String, Class, Class) -->
+<!-- 		<key-type>java.lang.Long</key-type> -->
+<!-- 		<value-type>com.example.entity.Product</value-type> -->
+		<!-- testing cache-through -->
+		<!-- Cache that uses a CacheLoaderWriter to load on misses, 
+		and write on mutative operations -->
+		<!-- below: autowired so can't add here -->
+		<!-- <loader-writer>
+			<class>com.example.assist.MyCacheLoadWriter</class>
+		</loader-writer>  -->
+	</cache>
+	
+	<cache-template name="default-template">
+		<expiry>
+			<!-- time to live -->
+			<!-- <ttl unit="seconds">15</ttl> -->
+			<ttl unit="minutes">1</ttl>
+			<!-- time to idle -->
+			<!-- <tti unit="seconds">15</tti> -->
+		</expiry>
+		<heap unit="entries">200</heap>
+<!-- 		<jsr107:mbeans enable-statistics="true"/> -->
+	</cache-template>
+
+</config>
