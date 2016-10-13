@@ -35,5 +35,5 @@ NOTE: there's a makeSlow() method added in the CacheLoaderWriter implementation 
 
 **what remains to be solved is the case when there are already records in the db. currently am tring to find a way to insert these into the cache on application startup**
 
-this follows the [Devoxx 2016 UK video](https://youtu.be/FQfd8x29Ud8)
+this sample project relises on [Devoxx 2016 UK video](https://youtu.be/FQfd8x29Ud8) by Louis Jacomet & Aurelien Broszniowski
 
