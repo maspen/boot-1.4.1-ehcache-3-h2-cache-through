@@ -11,7 +11,7 @@ this application came about after trying to use ehcache 3 with the default, auto
 
 ... enter cache-through
 
-endpint for adding a single record: [http://localhost:8080/products/save/](http://localhost:8080/products/save/)
+* endpint for adding a single record: [http://localhost:8080/products/save/](http://localhost:8080/products/save/)
 
 json to insert a new record (i use postman):
 
@@ -20,7 +20,7 @@ json to insert a new record (i use postman):
 	"price":4
 }```
 
-endpoint for getting a record uing the the cache key (NOT Entity#id) example: http://localhost:8080/products/getByCacheKey/5753825177764511602
+* endpoint for getting a record uing the the cache key (NOT Entity#id) example: http://localhost:8080/products/getByCacheKey/-4689282352029021067
 
 the "5753825177764511602" is the cache key that is auto-generated when save() is called. This can be seen in the console:
 
@@ -29,8 +29,11 @@ the "5753825177764511602" is the cache key that is auto-generated when save() is
 MyCacheLoadWriter#load(key) key: -4689282352029021067
 ...
 ```
+* endpoint for findAll(): [http://localhost:8080/products/all](http://localhost:8080/products/all)
 
 NOTE: there's a makeSlow() method added in the CacheLoaderWriter implementation MyCacheLoadWriter to simulate lag when the application interacts w/ the db.
+
+**what remains to be solved is the case when there are already records in the db. currently am tring to find a way to insert these into the cache on application startup**
 
 this follows the [Devoxx 2016 UK video](https://youtu.be/FQfd8x29Ud8)
 
